@@ -32,6 +32,14 @@ export default class User extends Model<User> {
 
   @AllowNull(false)
   @Column
+  age: number;
+
+  @AllowNull(false)
+  @Column
+  password: string;
+
+  @AllowNull(false)
+  @Column
   phoneNumber: string;
 
   @Column

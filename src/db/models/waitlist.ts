@@ -30,6 +30,10 @@ export default class Waitlist extends Model<Waitlist> {
   @Column
   day: Date;
 
+  @AllowNull(false)
+  @Column
+  locationId: string;
+
   @CreatedAt
   @AllowNull(false)
   @Column

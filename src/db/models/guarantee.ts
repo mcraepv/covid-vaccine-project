@@ -30,6 +30,10 @@ export default class Guarantee extends Model<Guarantee> {
   @Column
   day: Date;
 
+  @AllowNull(false)
+  @Column
+  locationId: string;
+
   @CreatedAt
   @AllowNull(false)
   @Column
