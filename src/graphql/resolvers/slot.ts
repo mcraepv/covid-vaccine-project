@@ -106,6 +106,4 @@ export default class {
     }
     return false;
   }
-
-  // slotToReserveRequest()
 }
