@@ -1,39 +1,39 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Slots', {
+    return queryInterface.createTable("Slots", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      id: {
-        type: Sequelize.STRING
+        type: Sequelize.UUID,
       },
       day: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       slotNumber: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       locationId: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       isReserved: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+      },
+      userId: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Slots');
-  }
+    return queryInterface.dropTable("Slots");
+  },
 };
