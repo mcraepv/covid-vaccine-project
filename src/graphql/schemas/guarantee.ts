@@ -1,4 +1,4 @@
-import { Field, ObjectType, InputType } from "type-graphql";
+import { Field, ObjectType, InputType } from 'type-graphql';
 
 @ObjectType()
 export default class Guarantee {
@@ -6,6 +6,7 @@ export default class Guarantee {
   @Field() userId: string;
   @Field() day: Date;
   @Field() locationId: string;
+  @Field() timePassed: number;
   @Field() createdAt: Date;
   @Field() updatedAt: Date;
 }
@@ -16,6 +17,7 @@ export class GuaranteeInput {
   @Field({ nullable: true }) userId?: string;
   @Field({ nullable: true }) day?: Date;
   @Field({ nullable: true }) locationId?: string;
+  @Field({ nullable: true }) timePassed?: number;
   @Field({ nullable: true }) createdAt?: Date;
   @Field({ nullable: true }) updatedAt?: Date;
 }
