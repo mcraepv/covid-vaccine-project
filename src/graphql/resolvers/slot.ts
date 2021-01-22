@@ -46,7 +46,7 @@ export default class {
   }
 
   // Select by Location
-  @Query(() => Slot)
+  @Query(() => [Slot])
   slotsForLocation(@Arg('location') location: string) {
     return SlotModel.findAll({ where: { location } });
   }
@@ -65,28 +65,28 @@ export default class {
     return false;
   }
 
-  @Query(() => Object)
-  async slotsToReserve(@Arg('guaranteeId') guaranteeId: string) {
-    const guarantee = await GuaranteeModel.findByPk(guaranteeId);
-    const location = await LocationModel.findByPk(guarantee.locationId);
-    const guaranteesByLocation = await GuaranteeModel.findAll({
-      where: { locationId: location.id },
-    });
-    const slots = await SlotModel.findAll({
-      where: { isReserved: false, locationId: location.id, day: guarantee.day },
-    });
-    const waitListsByLocation = await WaitlistModel.findAll({
-      where: { locationId: location.id },
-    });
+  // @Query(() => Object)
+  // async slotsToReserve(@Arg('guaranteeId') guaranteeId: string) {
+  //   const guarantee = await GuaranteeModel.findByPk(guaranteeId);
+  //   const location = await LocationModel.findByPk(guarantee.locationId);
+  //   const guaranteesByLocation = await GuaranteeModel.findAll({
+  //     where: { locationId: location.id },
+  //   });
+  //   const slots = await SlotModel.findAll({
+  //     where: { isReserved: false, locationId: location.id, day: guarantee.day },
+  //   });
+  //   const waitListsByLocation = await WaitlistModel.findAll({
+  //     where: { locationId: location.id },
+  //   });
 
-    return {
-      location,
-      numberOfAvailableSlots: slots.length,
-      numberOfPending: guaranteesByLocation.length,
-      numberOfWaitlist: waitListsByLocation.length,
-      availableSlots: slots,
-    };
-  }
+  //   return {
+  //     location: location,
+  //     numberOfAvailableSlots: slots.length,
+  //     numberOfPending: guaranteesByLocation.length,
+  //     numberOfWaitlist: waitListsByLocation.length,
+  //     availableSlots: slots,
+  //   };
+  // }
 
   @Query(() => Slot)
   async slotToReserveRequest(

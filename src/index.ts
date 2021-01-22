@@ -8,6 +8,9 @@ import cors from 'cors';
 import { createServer } from 'http';
 import cookieParser from 'cookie-parser';
 import sequelize from './db/sequelize';
+import cron from "node-cron";
+
+import {expireGuarantees} from './utils/expireGuarantees';
 
 const startServer = async () => {
   const schema = await buildSchema({
@@ -37,6 +40,8 @@ const startServer = async () => {
   server.applyMiddleware({ app, path: '/graphql' });
 
   const httpServer = createServer(app);
+
+  //cron.schedule('*****', expireGuarantees())
 
   httpServer.listen({ port: process.env.PORT }, (): void =>
     console.log(`Server is running on port ${process.env.PORT}/graphql`)

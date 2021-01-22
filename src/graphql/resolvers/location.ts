@@ -5,16 +5,14 @@ import SlotModel from "../../db/models/slot";
 import GuaranteeModel from "../../db/models/guarantee";
 import WaitlistModel from "../../db/models/waitlist";
 import { v4 as uuidv4 } from "uuid";
-import { Model } from "sequelize";
-import { INTEGER } from "sequelize";
 
-const compositObject = {
-    location: Location,
-    numAvailable: INTEGER,
-    numPending: INTEGER,
-    numWaitlist: INTEGER,
-    slots: [SlotModel],
-};
+// const compositObject = {
+//     location: Location,
+//     numAvailable: INTEGER,
+//     numPending: INTEGER,
+//     numWaitlist: INTEGER,
+//     slots: [SlotModel],
+// };
 
 @Resolver((of) => Location)
 export default class {
@@ -33,13 +31,20 @@ export default class {
         return LocationToUpdate.update(model)
     }
 
-    @Query(() => compositObject)
-    async SlotsForLocation(@Arg("id") id: string) {
-        const theLocation = await LocationModel.findByPk(id);
-        const theSlots = await SlotModel.findAll({ where: {locationId: id, isReserved: false} });
-        const numberPending = (await GuaranteeModel.findAll()).length;
-        const numberWaitlist = (await WaitlistModel.findAll()).length;
-        return {location: theLocation, numAvailable: theSlots.length, numPending: numberPending, numWaitlist: numberWaitlist, slots: theSlots};
-    }
+    // @Query(() => Object)
+    // async SlotsForLocation(@Arg("id") id: string) {
+    //     const theLocation = await LocationModel.findByPk(id);
+    //     const theSlots = await SlotModel.findAll({ where: {locationId: id, isReserved: false} });
+    //     const numberAvailable = theSlots.length
+    //     const numberPending = (await GuaranteeModel.findAll()).length;
+    //     const numberWaitlist = (await WaitlistModel.findAll()).length;
+    //     return {
+    //         location: theLocation,
+    //         numAvailable: numberAvailable,
+    //         numPending: numberPending,
+    //         numWaitlist: numberWaitlist,
+    //         slots: theSlots
+    //     };
+    // }
     
 }
