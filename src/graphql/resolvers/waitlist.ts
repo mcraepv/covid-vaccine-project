@@ -15,10 +15,11 @@ export default class {
     return WaitlistModel.findAll();
   }
 
-  @Mutation(() => Waitlist)
+  @Mutation(() => Boolean)
   async deleteWaitlist(@Arg('id') id: string) {
+    
     const deletedWaitlist = await WaitlistModel.destroy({ where: { id } });
 
-    console.log(deletedWaitlist);
+    return (deletedWaitlist) ? true : false
   }
 }
