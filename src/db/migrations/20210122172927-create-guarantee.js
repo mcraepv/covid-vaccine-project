@@ -16,6 +16,10 @@ module.exports = {
       locationId: {
         type: Sequelize.STRING,
       },
+      isExpired: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

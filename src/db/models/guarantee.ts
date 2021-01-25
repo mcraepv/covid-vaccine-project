@@ -8,6 +8,7 @@ import {
   IsUUID,
   PrimaryKey,
   Unique,
+  Default,
 } from 'sequelize-typescript';
 
 @Table({
@@ -33,6 +34,11 @@ export default class Guarantee extends Model<Guarantee> {
   @AllowNull(false)
   @Column
   locationId: string;
+
+  @AllowNull(false)
+  @Default(false)
+  @Column
+  isExpired: boolean;
 
   @CreatedAt
   @AllowNull(false)

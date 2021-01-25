@@ -1,22 +1,21 @@
-const GuaranteeModel = require("../db/models/guarantee");
+const moment = require('moment');
+
+const GuaranteeModel = require("../db/models/guarantee").default;
+console.log(GuaranteeModel)
 
 const expireGuarantees = async () => {
   const guarantees = await GuaranteeModel.findAll();
 
-  const deleteGuaranteesArray = [];
+  const compareDate = moment();
 
   for (guarantee of guarantees) {
-    if (guarantee.timePassed < 4) {
-      await GuaranteeModel.update(
-        { timePassed: guarantee.timePassed + 1 },
-        { where: { id: guarantee.id } }
-      );
-    } else {
-      deleteGuaranteesArray.push(guarantee.id);
+    const guaranteeDate = moment(guarantee.createdAt)
+
+    if (compareDate.diff(guaranteeDate) > 300000) {
+      await guarantee.update({...guarantee, isExpired: true})
     }
   }
 
-  await GuaranteeModel.destroy({ where: { id: deleteGuaranteesArray } });
 };
 
 module.exports.expireGuarantees = expireGuarantees;

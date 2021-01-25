@@ -8,12 +8,12 @@ import cors from 'cors';
 import { createServer } from 'http';
 import cookieParser from 'cookie-parser';
 import sequelize from './db/sequelize';
-// import cron from 'node-cron';
-import Guarantee from './db/models/guarantee';
-import Location from './db/models/location';
-import Slot from './db/models/slot';
-import User from './db/models/user';
-import Waitlist from './db/models/waitlist';
+import cron from 'node-cron';
+// import Guarantee from './db/models/guarantee';
+// import Location from './db/models/location';
+// import Slot from './db/models/slot';
+// import User from './db/models/user';
+// import Waitlist from './db/models/waitlist';
 
 import { expireGuarantees } from './utils/expireGuarantees';
 
@@ -48,7 +48,7 @@ const startServer = async () => {
 
   const httpServer = createServer(app);
 
-  //cron.schedule('*****', expireGuarantees())
+  cron.schedule('* * * * *', expireGuarantees )
 
   httpServer.listen({ port: process.env.PORT }, (): void =>
     console.log(`Server is running on port ${process.env.PORT}/graphql`)
