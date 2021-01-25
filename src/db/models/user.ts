@@ -8,11 +8,11 @@ import {
   IsUUID,
   PrimaryKey,
   Unique,
-} from "sequelize-typescript";
+} from 'sequelize-typescript';
 
 @Table({
-  modelName: "User",
-  tableName: "Users",
+  modelName: 'User',
+  tableName: 'Users',
 })
 export default class User extends Model<User> {
   @IsUUID(4)
@@ -41,15 +41,6 @@ export default class User extends Model<User> {
   @AllowNull(false)
   @Column
   phoneNumber: string;
-
-  @Column
-  guarenteeId: string;
-
-  @Column
-  waitlistId: string;
-
-  @Column
-  slotId: string;
 
   @CreatedAt
   @AllowNull(false)

@@ -8,11 +8,11 @@ import {
   IsUUID,
   PrimaryKey,
   Unique,
-} from "sequelize-typescript";
+} from 'sequelize-typescript';
 
 @Table({
-  modelName: "Slot",
-  tableName: "Slots",
+  modelName: 'Slot',
+  tableName: 'Slots',
 })
 export default class Slot extends Model<Slot> {
   @IsUUID(4)
@@ -25,10 +25,6 @@ export default class Slot extends Model<Slot> {
   @AllowNull(false)
   @Column
   day: Date;
-
-  @AllowNull(false)
-  @Column
-  slotNumber: number;
 
   @AllowNull(false)
   @Column

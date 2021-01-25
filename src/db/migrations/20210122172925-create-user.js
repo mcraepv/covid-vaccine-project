@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
-const sequelize = require("sequelize");
+const sequelize = require('sequelize');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("Users", {
+    return queryInterface.createTable('Users', {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -25,15 +25,6 @@ module.exports = {
       phoneNumber: {
         type: Sequelize.STRING,
       },
-      guaranteeId: {
-        type: Sequelize.STRING,
-      },
-      waitlistId: {
-        type: Sequelize.STRING,
-      },
-      slotId: {
-        type: Sequelize.STRING,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -45,6 +36,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("Users");
+    return queryInterface.dropTable('Users');
   },
 };

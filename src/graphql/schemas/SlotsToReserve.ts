@@ -1,6 +1,6 @@
-import { ObjectType, Field } from 'type-graphql';
-import Slot from './slot';
+import { Field, ObjectType, InputType } from 'type-graphql';
 import Location from './location';
+import Slot from './slot';
 
 @ObjectType({ description: 'Slots To Reserve Type' })
 export class SlotsToReserve {

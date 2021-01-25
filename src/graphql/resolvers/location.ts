@@ -1,4 +1,3 @@
-import { SlotsToReserve } from './../schemas/SlotsToReserve';
 import { Query, Resolver, Arg, Mutation } from 'type-graphql';
 import Location, { LocationInput } from '../schemas/location';
 import LocationModel from '../../db/models/location';
@@ -8,23 +7,13 @@ import WaitlistModel from '../../db/models/waitlist';
 import { v4 as uuidv4 } from 'uuid';
 import { SlotsToReserve as SlotsToReserveType } from '../schemas/SlotsToReserve';
 
-// const compositObject = {
-//     location: Location,
-//     numAvailable: INTEGER,
-//     numPending: INTEGER,
-//     numWaitlist: INTEGER,
-//     slots: [SlotModel],
-// };
-
 @Resolver((of) => Location)
 export default class {
-  // Create
   @Mutation(() => Location)
   createLocation(@Arg('model') model: LocationInput) {
     return LocationModel.create({ ...model, id: uuidv4() });
   }
 
-  // Update
   @Mutation(() => Location)
   async updateLocation(@Arg('model') model: LocationInput) {
     const LocationToUpdate = await LocationModel.findByPk(model.id);

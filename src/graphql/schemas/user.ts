@@ -1,4 +1,4 @@
-import { Field, ObjectType, InputType } from "type-graphql";
+import { Field, ObjectType, InputType } from 'type-graphql';
 
 @ObjectType()
 export default class User {
@@ -8,9 +8,6 @@ export default class User {
   @Field() age: number;
   @Field() password: string;
   @Field() phoneNumber: string;
-  @Field() guarenteeId: string;
-  @Field() waitlistId: string;
-  @Field() slotId: string;
   @Field() createdAt: Date;
   @Field() updatedAt: Date;
 }
@@ -23,9 +20,6 @@ export class UserInput {
   @Field({ nullable: true }) age?: number;
   @Field({ nullable: true }) password?: string;
   @Field({ nullable: true }) phoneNumber?: string;
-  @Field({ nullable: true }) guarenteeId?: string;
-  @Field({ nullable: true }) waitlistId?: string;
-  @Field({ nullable: true }) slotId?: string;
   @Field({ nullable: true }) createdAt?: Date;
   @Field({ nullable: true }) updatedAt?: Date;
 }

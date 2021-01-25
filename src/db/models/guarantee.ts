@@ -34,10 +34,6 @@ export default class Guarantee extends Model<Guarantee> {
   @Column
   locationId: string;
 
-  @AllowNull(false)
-  @Column
-  timePassed: number;
-
   @CreatedAt
   @AllowNull(false)
   @Column

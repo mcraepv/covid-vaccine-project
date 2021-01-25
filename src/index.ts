@@ -8,9 +8,14 @@ import cors from 'cors';
 import { createServer } from 'http';
 import cookieParser from 'cookie-parser';
 import sequelize from './db/sequelize';
-import cron from "node-cron";
+import cron from 'node-cron';
+import Guarantee from './db/models/guarantee';
+import Location from './db/models/location';
+import Slot from './db/models/slot';
+import User from './db/models/user';
+import Waitlist from './db/models/waitlist';
 
-import {expireGuarantees} from './utils/expireGuarantees';
+import { expireGuarantees } from './utils/expireGuarantees';
 
 const startServer = async () => {
   const schema = await buildSchema({
@@ -23,6 +28,8 @@ const startServer = async () => {
   });
 
   await sequelize();
+
+  // sequlizeInst.addModels([Guarantee, Location, Slot, User, Waitlist]);
 
   const app = express();
   app.use(cookieParser());

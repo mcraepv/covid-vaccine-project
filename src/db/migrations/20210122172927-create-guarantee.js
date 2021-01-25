@@ -16,9 +16,6 @@ module.exports = {
       locationId: {
         type: Sequelize.STRING,
       },
-      timePassed: {
-        type: Sequelize.INTEGER,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
