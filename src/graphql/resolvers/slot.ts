@@ -1,27 +1,29 @@
-import { Query, Resolver, Arg, Mutation } from 'type-graphql';
-import Slot, { SlotInput } from '../schemas/slot';
-import SlotModel from '../../db/models/slot';
-import { v4 as uuidv4 } from 'uuid';
-import LocationModel from '../../db/models/location';
-import GuaranteeModel from '../../db/models/guarantee';
-import WaitlistModel from '../../db/models/waitlist';
-import { SlotsToReserve as SlotsToReserveType } from '../schemas/SlotsToReserve';
+import { Query, Resolver, Arg, Mutation } from "type-graphql";
+import Slot, {
+  SlotInput,
+  SlotsToReserve as SlotsToReserveType,
+} from "../schemas/slot";
+import SlotModel from "../../db/models/slot";
+import { v4 as uuidv4 } from "uuid";
+import LocationModel from "../../db/models/location";
+import GuaranteeModel from "../../db/models/guarantee";
+import WaitlistModel from "../../db/models/waitlist";
 
 @Resolver((of) => Slot)
 export default class {
   @Mutation(() => Slot)
-  createSlot(@Arg('model') model: SlotInput) {
+  createSlot(@Arg("model") model: SlotInput) {
     return SlotModel.create({ ...model, id: uuidv4() });
   }
 
   @Mutation(() => Slot)
-  async updateSlot(@Arg('model') model: SlotInput) {
+  async updateSlot(@Arg("model") model: SlotInput) {
     const SlotToUpdate = await SlotModel.findByPk(model.id);
     return SlotToUpdate.update(model);
   }
 
   @Mutation(() => Slot)
-  async upsertSlot(@Arg('model') model: SlotInput) {
+  async upsertSlot(@Arg("model") model: SlotInput) {
     if (!model.id) {
       model.id = uuidv4();
     }
@@ -37,17 +39,17 @@ export default class {
   }
 
   @Query(() => Slot)
-  checkSlot(@Arg('id') id: string) {
+  checkSlot(@Arg("id") id: string) {
     return SlotModel.findByPk(id);
   }
 
   @Query(() => [Slot])
-  slotsForLocation(@Arg('location') location: string) {
+  slotsForLocation(@Arg("location") location: string) {
     return SlotModel.findAll({ where: { location } });
   }
 
   @Query(() => Boolean)
-  async unReserveSlot(@Arg('id') id: string) {
+  async unReserveSlot(@Arg("id") id: string) {
     const slot = await SlotModel.findByPk(id);
 
     if (slot.isReserved) {
@@ -59,7 +61,7 @@ export default class {
   }
 
   @Query(() => SlotsToReserveType)
-  async slotsToReserve(@Arg('guaranteeId') guaranteeId: string) {
+  async slotsToReserve(@Arg("guaranteeId") guaranteeId: string) {
     const guarantee = await GuaranteeModel.findByPk(guaranteeId);
     const location = await LocationModel.findByPk(guarantee.locationId);
     const guaranteesByLocation = await GuaranteeModel.findAll({
@@ -83,8 +85,8 @@ export default class {
 
   @Query(() => Slot)
   async slotToReserveRequest(
-    @Arg('userId') userId: string,
-    @Arg('slotId') slotId: string
+    @Arg("userId") userId: string,
+    @Arg("slotId") slotId: string
   ) {
     const guarantee = await GuaranteeModel.findOne({ where: { userId } });
     if (guarantee) {

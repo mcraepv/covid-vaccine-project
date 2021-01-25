@@ -1,4 +1,5 @@
-import { Field, ObjectType, InputType } from 'type-graphql';
+import { Field, ObjectType, InputType } from "type-graphql";
+import Location from "./location";
 
 @ObjectType()
 export default class Slot {
@@ -9,6 +10,24 @@ export default class Slot {
   @Field() userId: string;
   @Field() createdAt: Date;
   @Field() updatedAt: Date;
+}
+
+@ObjectType({ description: "Slots To Reserve Type" })
+export class SlotsToReserve {
+  @Field()
+  location: Location;
+
+  @Field()
+  numberOfAvailableSlots: Number;
+
+  @Field()
+  numberOfPending: Number;
+
+  @Field()
+  numberOfWaitlist: Number;
+
+  @Field()
+  availableSlots: Slot;
 }
 
 @InputType()

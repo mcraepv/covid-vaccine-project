@@ -1,20 +1,22 @@
 const GuaranteeModel = require("../db/models/guarantee");
 
 const expireGuarantees = async () => {
+  const guarantees = await GuaranteeModel.findAll();
 
-    const guarantees = await GuaranteeModel.findAll()
+  const deleteGuaranteesArray = [];
 
-    const deleteGuaranteesArray = []
-
-    for (guarantee of guarantees) {
-        if (guarantee.timePassed < 4) {
-            await GuaranteeModel.update({ timePassed: guarantee.timePassed + 1 }, { where: { id: guarantee.id } })
-        } else {
-            deleteGuaranteesArray.push(guarantee.id)
-        }
+  for (guarantee of guarantees) {
+    if (guarantee.timePassed < 4) {
+      await GuaranteeModel.update(
+        { timePassed: guarantee.timePassed + 1 },
+        { where: { id: guarantee.id } }
+      );
+    } else {
+      deleteGuaranteesArray.push(guarantee.id);
     }
+  }
 
-    await GuaranteeModel.destroy({ where: { id: deleteGuaranteesArray}})
-}
+  await GuaranteeModel.destroy({ where: { id: deleteGuaranteesArray } });
+};
 
 module.exports.expireGuarantees = expireGuarantees;
