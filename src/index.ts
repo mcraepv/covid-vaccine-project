@@ -3,18 +3,14 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
-import resolvers from './graphql/resolvers';
 import cors from 'cors';
 import { createServer } from 'http';
 import cookieParser from 'cookie-parser';
-import sequelize from './db/sequelize';
 import cron from 'node-cron';
-// import Guarantee from './db/models/guarantee';
-// import Location from './db/models/location';
-// import Slot from './db/models/slot';
-// import User from './db/models/user';
-// import Waitlist from './db/models/waitlist';
 
+import sequelize from './db/sequelize';
+import { createSlots } from './utils/createSlots';
+import resolvers from './graphql/resolvers';
 import { expireGuarantees } from './utils/expireGuarantees';
 
 const startServer = async () => {
@@ -28,8 +24,6 @@ const startServer = async () => {
   });
 
   await sequelize();
-
-  // sequlizeInst.addModels([Guarantee, Location, Slot, User, Waitlist]);
 
   const app = express();
   app.use(cookieParser());
@@ -48,7 +42,9 @@ const startServer = async () => {
 
   const httpServer = createServer(app);
 
-  cron.schedule('* * * * *', expireGuarantees )
+  cron.schedule('* * * * *', expireGuarantees);
+  const startDate = new Date();
+  createSlots(5, startDate.setHours(8), 5);
 
   httpServer.listen({ port: process.env.PORT }, (): void =>
     console.log(`Server is running on port ${process.env.PORT}/graphql`)

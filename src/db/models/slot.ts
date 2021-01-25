@@ -28,7 +28,7 @@ export default class Slot extends Model<Slot> {
 
   @AllowNull(false)
   @Column
-  locationID: string;
+  locationId: string;
 
   @AllowNull(false)
   @Column
