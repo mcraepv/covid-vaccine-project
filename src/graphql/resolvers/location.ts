@@ -29,7 +29,6 @@ export default class {
     const numberAvailable = theSlots.length;
     const numberPending = (await GuaranteeModel.findAll()).length;
     const numberWaitlist = (await WaitlistModel.findAll()).length;
-    console.log(theSlots[0].id);
     return {
       location: theLocation,
       numberOfAvailableSlots: numberAvailable,

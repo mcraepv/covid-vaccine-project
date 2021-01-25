@@ -78,13 +78,13 @@ export default class {
     };
   }
 
-  @Query(() => Slot)
+  @Mutation(() => Slot)
   async slotToReserveRequest(
     @Arg('userId') userId: string,
     @Arg('slotId') slotId: string
   ) {
     const guarantee = await GuaranteeModel.findOne({ where: { userId } });
-    if (guarantee) {
+    if (!guarantee.isExpired) {
       const reservedSlot = await SlotModel.findByPk(slotId);
       console.log(reservedSlot);
       if (!reservedSlot.isReserved) {
