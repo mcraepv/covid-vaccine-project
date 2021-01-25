@@ -86,6 +86,7 @@ export default class {
     const guarantee = await GuaranteeModel.findOne({ where: { userId } });
     if (guarantee) {
       const reservedSlot = await SlotModel.findByPk(slotId);
+      console.log(reservedSlot);
       if (!reservedSlot.isReserved) {
         return reservedSlot.update({
           ...reservedSlot,
