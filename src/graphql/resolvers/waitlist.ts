@@ -1,6 +1,6 @@
 import { Query, Resolver, Arg, Mutation } from 'type-graphql';
-import Waitlist, { WaitlistInput } from '../schemas/Waitlist';
-import WaitlistModel from '../../db/models/Waitlist';
+import Waitlist, { WaitlistInput } from '../schemas/waitlist';
+import WaitlistModel from '../../db/models/waitlist';
 import { v4 as uuidv4 } from 'uuid';
 
 @Resolver((of) => Waitlist)
