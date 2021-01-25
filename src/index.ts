@@ -8,7 +8,7 @@ import cors from 'cors';
 import { createServer } from 'http';
 import cookieParser from 'cookie-parser';
 import sequelize from './db/sequelize';
-import cron from 'node-cron';
+// import cron from 'node-cron';
 import Guarantee from './db/models/guarantee';
 import Location from './db/models/location';
 import Slot from './db/models/slot';

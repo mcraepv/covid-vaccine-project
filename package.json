@@ -1,5 +1,5 @@
 {
-  "name": "covid-vaccine",
+  "name": "backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -29,7 +29,6 @@
     "express-useragent": "^1.0.13",
     "graphql": "^14.5.8",
     "jsonwebtoken": "^8.5.1",
-    "node-cron": "^2.0.3",
     "pg": "^7.17.1",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^5.21.3",
@@ -37,7 +36,6 @@
     "sequelize-typescript": "^1.1.0",
     "ts-node": "^8.6.2",
     "type-graphql": "^0.17.6",
-    "typescript": "^3.7.5",
-    "uuid": "^8.3.2"
+    "typescript": "^3.7.5"
   }
 }
