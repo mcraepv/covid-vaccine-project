@@ -40,26 +40,23 @@ export default class {
   @Query(() => Guarantee)
   async getGuarantee(
     @Arg('userId') userId: string,
-    @Arg('locationId') locationId: string,
-    @Arg('date') date: Date
+    @Arg('locationId') locationId: string
   ) {
     const slots = await SlotModel.findAll({
       where: {
         locationId,
         isReserved: false,
-        day: date,
       },
     });
     const guarantees = await GuaranteeModel.findAll({
       where: {
         locationId,
-        day: date,
       },
     });
     if (guarantees.length < slots.length) {
-      return GuaranteeModel.create({ userId, locationId, day: date });
+      return GuaranteeModel.create({ userId, locationId });
     } else {
-      return WaitlistModel.create({ userId, locationId, day: date });
+      return WaitlistModel.create({ userId, locationId });
     }
   }
 }

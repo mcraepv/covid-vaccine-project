@@ -4,7 +4,6 @@ import { Field, ObjectType, InputType } from 'type-graphql';
 export default class Guarantee {
   @Field() id: string;
   @Field() userId: string;
-  @Field() day: Date;
   @Field() locationId: string;
   @Field() isExpired: boolean;
   @Field() createdAt: Date;
@@ -15,7 +14,6 @@ export default class Guarantee {
 export class GuaranteeInput {
   @Field({ nullable: true }) id?: string;
   @Field({ nullable: true }) userId?: string;
-  @Field({ nullable: true }) day?: Date;
   @Field({ nullable: true }) locationId?: string;
   @Field({ nullable: true }) isExpired?: boolean;
   @Field({ nullable: true }) createdAt?: Date;

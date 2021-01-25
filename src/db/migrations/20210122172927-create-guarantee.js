@@ -10,15 +10,12 @@ module.exports = {
       userId: {
         type: Sequelize.STRING,
       },
-      day: {
-        type: Sequelize.DATE,
-      },
       locationId: {
         type: Sequelize.STRING,
       },
       isExpired: {
         allowNull: false,
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,
