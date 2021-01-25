@@ -31,7 +31,7 @@ export default class {
     const numberWaitlist = (await WaitlistModel.findAll()).length;
     return {
       location: theLocation,
-      numberOfAvailable: numberAvailable,
+      numberOfAvailableSlots: numberAvailable,
       numberOfPending: numberPending,
       numberOfWaitlist: numberWaitlist,
       availableSlots: theSlots,

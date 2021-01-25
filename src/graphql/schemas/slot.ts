@@ -1,5 +1,5 @@
-import { Field, ObjectType, InputType } from 'type-graphql';
-import Location from './location';
+import { Field, ObjectType, InputType } from "type-graphql";
+import Location from "./location";
 
 @ObjectType()
 export default class Slot {
@@ -12,7 +12,7 @@ export default class Slot {
   @Field() updatedAt: Date;
 }
 
-@ObjectType({ description: 'Slots To Reserve Type' })
+@ObjectType({ description: "Slots To Reserve Type" })
 export class SlotsToReserve {
   @Field()
   location: Location;
@@ -27,7 +27,7 @@ export class SlotsToReserve {
   numberOfWaitlist: Number;
 
   @Field()
-  availableSlots: Slot;
+  availableSlots: Slot[];
 }
 
 @InputType()

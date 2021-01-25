@@ -28,9 +28,6 @@ export default class Location extends Model<Location> {
   @Column
   address: string;
 
-  @Column
-  numberOfSlots: number;
-
   @CreatedAt
   @AllowNull(false)
   @Column
