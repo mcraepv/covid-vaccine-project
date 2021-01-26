@@ -26,8 +26,8 @@ export class SlotsToReserve {
   @Field()
   numberOfWaitlist: Number;
 
-  @Field()
-  availableSlots: Slot;
+  @Field(() => [Slot])
+  availableSlots: Slot[];
 }
 
 @InputType()

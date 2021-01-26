@@ -60,7 +60,7 @@ export default class {
     const guarantee = await GuaranteeModel.findByPk(guaranteeId);
     const location = await LocationModel.findByPk(guarantee.locationId);
     const guaranteesByLocation = await GuaranteeModel.findAll({
-      where: { locationId: location.id },
+      where: { locationId: location.id, isExpired: false },
     });
     const slots = await SlotModel.findAll({
       where: { isReserved: false, locationId: location.id },
@@ -86,7 +86,6 @@ export default class {
     const guarantee = await GuaranteeModel.findOne({ where: { userId } });
     if (!guarantee.isExpired) {
       const reservedSlot = await SlotModel.findByPk(slotId);
-      console.log(reservedSlot);
       if (!reservedSlot.isReserved) {
         return reservedSlot.update({
           ...reservedSlot,
